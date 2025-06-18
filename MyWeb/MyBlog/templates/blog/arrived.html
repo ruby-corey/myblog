@@ -1,0 +1,135 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}标签页{{ current_task }}{% endblock %}
+
+<!--添加css-->
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MyBlog/css/blog.css' %}">
+{% endblock %}
+
+<!--主要内容-->
+{% block content %}
+<div class="article-list-container">
+
+    {% for article in articles %}
+    <article class="article-card">
+        
+        <div class="article-info">
+            <div class="card-title">
+                <i class="card-icon"></i>
+                <h2 class="list-title">
+                    <a href="{% url 'MyBlog:article_detail' article.id %}">{{ article.title }}</a>
+                </h2>
+            </div>
+            <div class="meta-info">
+
+                <div class="meta-section card-date">
+                    <div class="meta-icon date-icon">
+                        <img src="{% static 'MyBlog/css/imgs/icons/calendar.png'%}" alt="date-icon" class="date-icon">
+                    </div>
+                    <span class="pub-date">{{ article.pub_date|date:"Y-m-d" }}</span>
+                </div>
+
+                {% if article.category %}
+                <div class="meta-section card-category">
+                    <div class="meta-icon category-icon" >
+                        <img src="{% static 'MyBlog/css/imgs/icons/computer.png'%}" alt="category-icon" class="category-icon">
+                    </div>
+                    <span class="article-category-name">{{ article.category }}</span>
+                </div>
+                {% endif %}
+
+                {% if article.tags.exists %}
+                <div class="meta-section card-tag">
+                    <div class="meta-icon ">
+                        <img src="{% static 'MyBlog/css/imgs/icons/井.png'%}" alt="tag-icon" class="tag-icon">
+                    </div>
+                    {% for tag in article.tags.all %}
+                    <span class="tag-name">{{ tag.name }}{% if not forloop.last %}/{% endif %}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+            </div>
+            <div class="card-overview">概述：{{ article.overview }}</div>
+            <div class="card-count">
+                <span class="word_count">字数：{{ article.word_count }}</span>
+                <span class="visitor_count">| 访问：{{ article.visited_num }}</span>
+            </div>
+        </div>
+        {% if article.cover_img %}
+        <div class="article-cover">
+            <img src="{{ article.cover_img.url }}" alt="{{ article.title }}封面" class="cover-image">
+        </div>
+        {% endif %}
+    </article>
+    {% empty %}
+    <div class="empty-tip">
+        <p>暂时还没有发布文章哦~</p>
+    </div>
+    
+{% endfor %}
+
+</div>
+<!--分页控制-->
+<div class="pagination-container">
+    <div class="pagination">
+        {% if articles.has_previous %}
+        <a href="?page=1" class="pagination-link first-page" title="第一页">
+            
+            <img src="{% static 'MyBlog/css/imgs/icons/angle2_left.png' %}" class="angle2-left">
+        </a>
+        <a href="?page={{ articles.previous_page_number }}" class="pagination-link pre-page" title="上一页">
+            
+            <img src="{% static 'MyBlog/css/imgs/icons/angle_left.png' %}" class="angle-left">
+        </a>
+        {% else %}
+            <span class="pagination-link disabled">
+                
+                <img src="{% static 'MyBlog/css/imgs/icons/angle2_left.png' %}" class="angle2-left">
+            </span>
+                <span class="pagination-link disabled">
+                
+                <img src="{% static 'MyBlog/css/imgs/icons/angle_left.png' %}" class="angle-left">
+            </span>
+        {% endif %}
+        <div class="page-number">
+            {% for num in articles.paginator.page_range %}
+                {% if num == articles.number %}
+                    <span class="pagination-link current-page">{{ num }}</span>
+                {% elif num > articles.number|add:'-3' and num < articles.number|add:'3' %}
+                    <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+                {% elif num == 1 or num == articles.paginator.num_pages %}
+                    <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+                {% elif num == articles.number|add:'-4' or num == articles.number|add:'4' %}
+                    <span class="pagination-ellipsis">...</span>
+                {% endif %}
+            {% endfor%}
+        </div>
+        {% if articles.has_next %}
+            <a href="?page={{ articles.next_page_number }}" class="pagination-link next_page" title="下一页">
+                
+                <img src="{% static 'MyBlog/css/imgs/icons/angle_right.png' %}" class="angle-right">
+            </a>
+            <a href="?page={{ articles.paginator.num_pages }}" class="pagination-link last-page" title="最后一页">
+                
+                <img src="{% static 'MyBlog/css/imgs/icons/angle2_right.png' %}" class="angle2-right">
+            </a>
+        {% else %}
+            <span class="pagination-link disabled">
+                
+                <img src="{% static 'MyBlog/css/imgs/icons/angle_right.png' %}" class="angle-right">
+            </span>
+            <span class="pagination-link disabled">
+                
+                <img src="{% static 'MyBlog/css/imgs/icons/angle2_right.png' %}" class="angle2-right">
+            </span>
+        {% endif %}
+    </div>
+    <div class="pagination-info">
+        第 {{ articles.number }} 页，共 {{ articles.paginator.num_pages }} 页
+    </div>
+</div>
+
+{% endblock %}

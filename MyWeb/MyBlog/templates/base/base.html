@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="HTML, CSS, XML, XHTML, Python, Django">
+    <meta name="description" content="免费 Web & 编程 个人博客">
+    <meta name="author" content="IronBus">
+    <title>{% block title %}blog{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'MyBlog/css/base.css' %}">
+
+    <!-- 子模板专用CSS扩展点 -->
+    {% block extrastyle %}{% endblock extrastyle %}
+</head>
+
+<body>
+    <!-- 导航栏公共部分 -->
+    {% include 'base/navbar.html' %}
+
+    <div class="page-container">
+
+        <div class="page-header"><h1 class="site-title">IronBus's Blog</h1></div>
+        
+        <div class="page-content">
+           
+            <div class="content-wrapper">
+                <!-- 主要内容区 -->
+                <main class="primary-content">
+                    {% block content %}
+
+                    <!-- 子模板内容将插入此处 -->
+
+                    {% endblock content %}
+                </main>
+                 <!-- 侧栏 -->
+                <aside class="secondary-sidebar"> 
+                    {% include 'base/side.html' %}
+                </aside>
+            </div>
+
+        </div>
+
+
+        <!-- 页脚公共部分 -->
+        {% include 'base/footer.html' %}
+    </div>
+
+
+        
+{% block scripts %}
+    
+{% endblock scripts %}
+</body>
+
+</html>

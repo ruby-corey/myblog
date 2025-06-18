@@ -1,0 +1,56 @@
+{% load static %}    
+    <nav class="navbar transparent-navbar">
+        <div class="nav-grid">
+
+            <!--导航栏左侧-->
+            <ul class="nav-links">
+                <li><a href="{% url 'MyBlog:home' %}">主页</a></li>
+                <li><a href="{% url 'MyBlog:archive' %}">归档</a></li>
+                <!-- <li><a href="">留言板</a></li> -->
+                <li><a href="{% url 'MyBlog:about' 'about-page' %}">关于</a></li>
+                
+
+            </ul>
+
+            <!--中间留空（未来可拓展）-->
+            <div></div>
+
+            <!--导航栏右侧-->
+            <div class="nav-right">
+
+                <!--搜索框-->
+                <div class="search-container">
+                    <form action="{% url 'MyBlog:search' %}" class="search-content" method="get">
+
+                        <input type="text" name="q" placeholder="搜索文章、主题..." id="search-in" required>
+
+                        <button type="reset" class="search-bt" >
+                            <img class="search-img" src="{% static 'MyBlog/css/imgs/icons/clear_icon.png' %}" alt="Search">
+                        </button>
+
+                        <button type="submit" class="search-bt" >
+                            <img class="search-img" src="{% static 'MyBlog/css/imgs/icons/search_icon.png' %}" alt="Search">
+                        </button>
+                    </form>
+                </div>
+
+                <!--按扭-->
+                <div class="acton-button">
+
+                   <button class="theme-switcher" id="themeSwitcher" type="button">
+                        <span class="button-wrap">
+                            <span class="icon icon-theme icon-theme-light"></span>
+                            <span class="icon icon-theme icon-theme-dark"></span>
+                            Theme
+                        </span>     
+                   </button>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+{% block scripts %}
+    <script src="{% static 'MyBlog/thejs/navbar.js' %}"></script>
+{% endblock scripts %}

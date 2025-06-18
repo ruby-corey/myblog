@@ -1,0 +1,78 @@
+{% load static %}
+<!--添加css-->
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MyBlog/css/side.css' %}">
+{% endblock %}
+
+<!--个人资料-->
+<div class="sidebar-profile">
+    <div class="profile-header">
+        <img alt="IronBus的头像" class="profile-avatar" src="{% static 'MyBlog/css/imgs/others/avatar.jpg' %}">
+        <div class="profile-info">
+            <h2 class="profile-name">IronBus</h2>
+            <p class="profile-title">全栈开发者 & 技术爱好者</p>
+        </div>
+    </div>
+    <div class="profile-bio">
+        <p>何处无风，心静自成归舟。</p>
+    </div>
+    <div class="profile-stats">
+        <div class="stat-item">
+            <span class="stat-number">{{ COUNT }}</span>
+            <span class="stat-label">文章</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">{{ TOTAL_VISITED }}</span>
+            <span class="stat-label">阅读</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">0</span>
+            <span class="stat-label">门客</span>
+        </div>
+    </div>
+    <div class="profile-social">
+        <a href="#" class="social-link" aria-label="GitHub">
+            <i class="icon-github"></i>
+            
+        </a>
+    </div>
+</div>
+
+<!--分类-->
+<div class="sidebar-section">
+    <div class="section-header">
+        <i class="section-icon"></i>
+        <h2 class="section-title"> 分类</h2>
+    </div>
+    <div class="categories-container">
+        {% for category in categories %}
+        <a href="{% url 'MyBlog:arrived-by-category' category.slug %}" class="category-item">
+            <span class="category-name">{{ category.name }}</span>
+            <span class="category-count">{{ category.post_count }}</span>
+        </a>
+        {% empty %}
+        <p class="empty-message">暂无分类</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!--标签云-->
+<div class="sidebar-section">
+    <div class="section-header">
+        <i class="section-icon"></i>
+        <h2 class="section-title">标签</h2>
+    </div>
+    <div class="tags-container">
+        {% if tags.all %}
+            {% for tag in tags %}
+            <a href="{% url 'MyBlog:arrived-by-tag' tag.slug %}" class="tag-item" >
+                    {{ tag.name }}
+            </a>
+            {% empty %}
+            <p class="empty-message">暂无标签</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,75 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ article.title }} - 我的博客{% endblock title %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MyBlog/css/article_detail.css' %}">
+{% endblock extrastyle %}
+
+{% block content %}
+
+<article class="article-content">
+    <header>
+        <h2 class="title">{{ article.title }}</h2>
+        <div class="meta">
+            <span class="pub-date">发布日期：{{ article.pub_date|date:"Y-m-d" }}</span>
+            <span class="version">评论数：v{{ article.comments.count }}</span>
+        </div>
+    </header>
+    
+    <section class="content">
+        {{ article.rendered_content|safe }}
+    </section>
+</article>
+<!-------------------------------------------------------------------------------------评论模块-->
+<div class="comment-section" id="comment-section">
+
+    <!---提交评论-->
+    <div class="comment-body">
+        <h3 class="comment-section-title">发表评论</h3>
+        <form class="comment-input" method="post" >
+            {% csrf_token %}
+            <div class="comment-section-header">
+                
+                <div class="comment-section-author">
+                    <label for="{{ form.author.id_for_label}}">{{ form.author.label }}</label>
+                    {{ form.author }}
+                </div>
+
+                <div class="comment-section-email">
+                    <label for="{{ form.email.id_for_label}}">{{ form.email.label }}</label>
+                    {{ form.email }}
+                </div>
+
+            </div>
+
+            <div class="comment-section-body">
+                    <label for="{{ form.body.id_for_label}}">{{ form.body.label }}</label>
+                    {{ form.body }}
+            </div>
+
+            <input type="submit" class="comment-submit" value="发送">
+        </form>
+    </div>
+<!--评论区-->
+    <div class="comment-list">
+        <h3 class="comment-list-title">{{ article.comments.count }}条评论</h3>
+        {% for cmt in comments %}
+        <div class="comment-container">
+            <div class="comment-list-header">
+                <div class="comment-user">{{ cmt.author }} ({{ cmt.comment_date|date:"Y-m-d H:i" }})</div>
+                <div class="floor">#{{ cmt.floor }}楼</div>
+            </div>
+            
+            <div class="comment-content">{{ cmt.body }}</div>
+            
+        </div>
+        {% empty %}
+        <div class="empty-comment">暂无评论</div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,257 @@
+/* -----------------------------------------------------------文章列表容器 */
+
+
+.article-list-container {
+    display: grid;
+    grid-template-rows:repeat(8,1fr);
+}
+
+[data-theme="dark"] .article-card {
+    background-color: rgba(20, 20, 30, 0.9) !important
+    
+}
+
+[data-theme="dark"] .article-card a {
+    
+    color: #ffffff !important; 
+    
+}
+
+[data-theme="dark"] .article-content {
+    background-color: rgba(20, 20, 30, 0.9) !important
+}
+
+[data-theme="dark"] .meta-icon {
+    background-color: #1c2455 !important;
+}
+
+.article-card {
+
+    grid-column: 1; 
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 0 0 0 1.5rem;
+    margin: 10px 0;
+    border-radius: 12px 0 0 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    width: 100%; 
+    max-width: 100%; 
+    height: 200px;
+    position: relative; 
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+
+}
+
+.article-info{
+    display: grid;
+    grid-template-rows: repeat(4,1fr);
+    justify-self: start;
+    max-height: 184px ;
+}
+
+.article-cover {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    margin: 0.5rem 0;
+    padding-top: 0.5rem;
+    color: #000000;
+}
+
+
+.card-icon {
+    width: 4px;
+    height: 20px;
+    margin-right: 12px;
+    background-color: #1a5abb;
+    border-radius: 5px;
+    
+}
+
+.article-card a:link,
+.article-card a:visited {
+    color: #000; 
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.article-card a:hover {
+    
+    transform: translateY(1px) translateX(1px);
+    color: #2fc8ff;
+    transition: transform 0.3s ease ;
+}
+
+
+
+@media (max-width: 650px) {
+    .article-card {
+        padding: 1rem;
+        height: auto;
+        min-height: 180px;
+    }
+}
+
+.meta-info {
+    display: flex;
+    margin: 5px;
+}
+
+.meta-icon {
+    background-color: #c7f8ff;
+    width: 30px;
+    height: 30px;
+    margin-right:10px ;
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meta-icon img {
+    width: 75%;       
+    height: 75%;      
+}
+
+
+.meta-section {
+    display: flex;
+    margin: 1px 5px;
+}
+
+.card-count {
+    margin: 5px 10px;
+}
+
+.card-overview {
+    margin: 10px;
+    min-height: 24px;
+}
+
+
+/* -----------------------------------------------------------分页容器 */
+.pagination-container {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 分页链接 */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.pagination-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: #f5f7fa;
+    color: #107cbb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.pagination-link:hover:not(.disabled):not(.current-page) {
+    background: #107cbb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.pagination-link.current-page {
+    background: #107cbb;
+    color: white;
+    font-weight: 600;
+}
+
+.pagination-link.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.page-number {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pagination-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: #777;
+}
+
+/* 分页信息 */
+.pagination-info {
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.angle-left{
+    height: 50%;
+    width: 50%;
+}
+
+.angle2-left{
+    height: 60%;
+    width: 60%;
+}
+
+.angle-right{
+    height: 60%;
+    width: 60%;
+}
+
+.angle2-right{
+    height: 60%;
+    width: 60%;
+}
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .page-numbers {
+        display: none;
+    }
+    
+    .pagination {
+        gap: 0.2rem;
+    }
+    
+    .pagination-link {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+}
+
+

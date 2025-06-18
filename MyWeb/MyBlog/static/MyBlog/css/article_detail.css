@@ -1,0 +1,259 @@
+[data-theme="dark"] .article-content {
+    background-color: rgba(20, 20, 30, 0.9) !important;
+    
+}
+
+[data-theme="dark"] .comment-section {
+    background-color: rgba(20, 20, 30, 0.9) !important;
+    
+}
+
+[data-theme="dark"] .form-control {
+    background-color: rgba(53, 53, 90, 0.9) !important;
+    
+}
+[data-theme="dark"] .empty-comment,.comment-container {
+    color: #fff !important;
+    background-color: rgba(53, 53, 90, 0.4) !important;
+    
+}
+
+.article-content {
+    /* 
+    其它参考参数
+    margin-left: -10% ;
+    margin-right: 35px; 
+    */
+    grid-column: 1; 
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 1rem 2rem;
+    margin: 2px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    width: 100%; 
+    max-width: 100%; 
+    justify-self: start; 
+    position: relative; 
+    
+
+}
+
+@media (max-width: 650px) {
+    .article-content {
+        padding: 1rem;
+    }
+}
+
+.article-content .content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    overflow-wrap: break-word;
+    /*应用于行级元素，用来设置浏览器是否应该在一个本来不能断开的字符串中插入换行符，以防止文本溢出其行向盒 */
+}
+
+.main-article {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden; /* 防止内容溢出 */
+}
+/*-------------------------------------------------------------------------------------------评论区*/
+/* 评论区整体样式 */
+.comment-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2rem 1rem 1rem;
+    margin: 2rem 0;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.comment-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 发表评论区域 */
+.comment-body {
+    margin-bottom: 2rem;
+}
+
+.comment-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a73e8;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.comment-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, #1a73e8, #4285f4);
+    border-radius: 3px;
+}
+
+/* 评论表单样式 */
+.comment-input {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.comment-section-header {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.comment-section-author, .comment-section-email {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comment-section-author label, .comment-section-email label, .comment-section-body label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: #f9fafb;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+}
+
+.comment-section-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.comment-section-body .form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.comment-submit {
+    background: rgb(13, 164, 219);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    align-self: flex-end;
+}
+
+.comment-submit:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.comment-submit:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* 评论列表样式 */
+.comment-list {
+    background-color: #f9fafb;
+    border-radius: 12px;
+    padding: 1rem;
+    padding-top: 0.75rem;
+}
+
+.comment-list-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comment-list-title i {
+    color: #1a73e8;
+}
+
+.comment-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.75rem;
+    margin-bottom: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.comment-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.comment-user {
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comment-user span {
+    font-weight: normal;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.floor {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.comment-content {
+    color: #4b5563;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1rem;
+    border-left: 3px solid #e8f0fe;
+}
+
+.empty-comment {
+    padding: 1.5rem;
+    text-align: center;
+    color: #6b7280;
+    background-color: #f3f4f6;
+    border-radius: 10px;
+    font-style: italic;
+}

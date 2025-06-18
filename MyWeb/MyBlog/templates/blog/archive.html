@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}归档{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MyBlog/css/archive.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="archive-container">
+    {% for year_data in archive_data %}
+    <div class="archive-header">
+            <div class="archive-date year">{{ year_data.year }}</div>
+            <div class="archive-icon icon-header"></div>
+            <div class="archive-title total-article">{{ year_data.total_count }}篇文章</div>
+    </div>
+        {% for months_data in year_data.months %}
+            {% for article in months_data.articles %}
+            <a class="pub-data" href="{% url 'MyBlog:article_detail' article.id %}">
+                <div class="archive-date day">{{ article.pub_date|date:"m-d" }}</div>
+                <div class="archive-icon icon-body"></div>
+                <div class="archive-title article-title">{{ article.title }}</div>
+            </a>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endblock content %}

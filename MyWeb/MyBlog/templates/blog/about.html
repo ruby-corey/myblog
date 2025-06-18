@@ -1,0 +1,108 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}关于我们 - {{ block.super }}{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'MyBlog/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="about-section">
+    <div class="container py-5">
+        <!-- 页面标题 -->
+        <h1 class="display-4 text-center mb-5">关于本站</h1>
+
+        <!-- 主要内容卡片 -->
+        <div class="card shadow-lg">
+            <div class="card-body p-4 p-md-5">
+                <!-- 个人 -->
+                <div class="mission-statement mb-5">
+                    <h2 class="mb-4">
+                        <i class="bi bi-bullseye me-2"></i>关于作者
+                    </h2>
+                    <p class="lead">
+                        目前本人主要以Python语言为主，分享技术学习经验。
+                    </p>
+                    <P>联系邮箱：2547927917@qq.com</P>
+                </div>
+
+                <!-- 核心价值 -->
+                <div class="core-values row g-4 mb-5">
+                    <div class="col-md-4">
+                        <div class="value-card p-4 h-100">
+                            <h3 class="h4">
+                                <i class="bi bi-lightbulb me-2"></i>逐步完善ing
+                            </h3>
+                            <p>偷懒力</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="value-card p-4 h-100">
+                            <h3 class="h4">
+                                <i class="bi bi-people me-2"></i>玛卡巴卡
+                            </h3>
+                            <p>还在偷懒</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="value-card p-4 h-100">
+                            <h3 class="h4">
+                                <i class="bi bi-gear me-2"></i>卡不卡
+                            </h3>
+                            <p>为什么不可以偷懒</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术栈 -->
+                <div class="tech-stack mb-5">
+                    <h2 class="mb-4">
+                        <i class="bi bi-stack me-2"></i>技术栈
+                    </h2>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="badge bg-primary py-2 px-3">Django 5</span>
+                        <span class="badge bg-success py-2 px-3">Python 3.11</span>
+                        <span class="badge bg-info py-2 px-3">Linux</span>
+                        <span class="badge bg-warning py-2 px-3">Mysql</span>
+                        <span class="badge bg-danger py-2 px-3">....</span>
+                    </div>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats row g-4 text-center">
+                    <div class="col-md-3">
+                        <div class="stat-items p-3 bg-light rounded">
+                            <div class="h2 mb-0">{{ COUNT }}</div>
+                            <small>文章</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-items p-3 bg-light rounded">
+                            <div class="h2 mb-0">0K+</div>
+                            <small>访问量</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-items p-3 bg-light rounded">
+                            <div class="h2 mb-0">0</div>
+                            <small>运行时间</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-items p-3 bg-light rounded">
+                            <div class="h2 mb-0">0</div>
+                            <small>状态</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<!-- 如果需要添加页面特定JS -->
+<script src="{% static 'MyBlog/thejs/about.js' %}"></script>
+{% endblock %}
