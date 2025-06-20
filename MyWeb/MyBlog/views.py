@@ -216,4 +216,6 @@ class AboutDetailView(generic.DetailView):
     template_name = "blog/about.html"
 
 
+# ==========================================================================================
+
 

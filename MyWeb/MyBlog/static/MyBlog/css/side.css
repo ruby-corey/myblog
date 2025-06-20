@@ -1,4 +1,4 @@
-/* 滚动条美化 非标准，待优化*/
+/* 滚动条美化 非标准，待优化
 .secondary-sidebar::-webkit-scrollbar {
     width: 6px;
 }
@@ -15,22 +15,19 @@
 
 .secondary-sidebar::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
-}
+} */
 
 /* ====================== 个人资料卡片 ====================== */
 .sidebar-profile {
     display: flex;
     flex-direction: column;
     min-height: 320px;
-    /* background:url('imgs/others/card.jpg') ;
-    background-size: cover; */
-    background: linear-gradient(180deg,#72bbf4,#ffffff);
+    background: var(--sider-lg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: auto;
-    margin-top: 10px;
+    margin-top: 0.5rem;
     
     
 }
@@ -155,28 +152,10 @@
 }
 
 /* ====================== 侧边栏区块通用样式 ====================== */
-[data-theme="dark"] .sidebar-section {
-    background-color: rgba(20, 20, 30, 0.9) !important;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-}
-
-[data-theme="dark"] .category-item {
-    background-color: rgba(53, 53, 90, 0.9) !important;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-}
-
-[data-theme="dark"] .sidebar-profile {
-
-    background:linear-gradient(0, #233557, #198AE1) !important;
-    color: #ffffff;
-    
-}
 
 .sidebar-section {
-    background: white;
-    color: rgb(3, 3, 3);
+    background: var(--article-bg-color);
+    color: var(--text-color);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -211,7 +190,7 @@
 .empty-message {
     padding: 20px;
     text-align: center;
-    color: #777;
+    color: var(--text-color);
     font-size: 0.95rem;
     margin: 0;
 }
@@ -229,9 +208,9 @@
     border-radius: 8px;
     margin-bottom: 8px;
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
     transition: all 0.2s ease;
-    background: #f9f9f9;
+    background: var(--input-bg);
 }
 
 .category-item:hover {
@@ -284,22 +263,220 @@
 }
 
 /* ====================== 响应式调整 ====================== */
-@media (max-width: 900px) {
-    .sidebar {
-        position: relative;
+
+
+@media (max-width: 1024px) {
+    .secondary-sidebar {
+        position: static;
         top: 0;
         max-height: none;
+        min-height: auto;
+        padding-right: 0;
+        margin-top: 2rem;
+    }
+    
+    .sidebar-profile,
+    .sidebar-section {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-profile,
+    .sidebar-section {
+        border-radius: 10px;
+    }
+    
+    .section-header {
+        padding: 14px 18px;
+    }
+    
+    .section-title {
+        font-size: 1rem;
+    }
+}
+
+/* 个人资料卡片响应式调整 */
+@media (max-width: 1024px) {
+    .sidebar-profile {
+        min-height: 280px;
+    }
+    
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .profile-name {
+        font-size: 1.3rem;
+    }
+    
+    .profile-title {
+        font-size: 0.85rem;
+    }
+    
+    .profile-bio {
+        min-height: 30px;
+        font-size: 0.8rem;
     }
     
     .profile-stats {
-        padding: 10px 0;
+        padding: 12px 0;
     }
     
     .stat-number {
         font-size: 1.1rem;
     }
     
-    .popular-post {
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    
+    .profile-social {
         padding: 10px 0;
+        gap: 12px;
+    }
+    
+    .social-link {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-profile {
+        min-height: 250px;
+    }
+    
+    .profile-header {
+        padding: 15px 15px 8px 15px;
+    }
+    
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        border-width: 3px;
+    }
+    
+    .profile-name {
+        font-size: 1.2rem;
+    }
+    
+    .profile-title {
+        font-size: 0.8rem;
+    }
+    
+    .profile-bio {
+        padding: 6px;
+        font-size: 0.75rem;
+    }
+    
+    .stat-number {
+        font-size: 1rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* 分类区块响应式调整 */
+@media (max-width: 1024px) {
+    .categories-container {
+        padding: 8px 12px;
+    }
+    
+    .category-item {
+        padding: 8px 12px;
+        margin-bottom: 6px;
+    }
+    
+    .category-name {
+        font-size: 0.9rem;
+    }
+    
+    .category-count {
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        min-width: 35px;
+        min-height: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .categories-container {
+        padding: 6px 10px;
+    }
+    
+    .category-item {
+        padding: 7px 10px;
+        border-radius: 6px;
+    }
+    
+    .category-name {
+        font-size: 0.85rem;
+    }
+    
+    .category-count {
+        font-size: 0.7rem;
+        min-width: 30px;
+    }
+}
+
+/* 标签云响应式调整 */
+@media (max-width: 1024px) {
+    .tags-container {
+        gap: 8px;
+        padding: 12px;
+    }
+    
+    .tag-item {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tags-container {
+        gap: 6px;
+        padding: 10px;
+    }
+    
+    .tag-item {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        border-radius: 15px;
+    }
+}
+
+/* 超小屏幕优化（手机竖屏） */
+@media (max-width: 480px) {
+    .secondary-sidebar {
+        margin-top: 1.5rem;
+    }
+    
+    .sidebar-profile,
+    .sidebar-section {
+        border-radius: 8px;
+        margin-bottom: 1.2rem;
+    }
+    
+    .section-header {
+        padding: 12px 15px;
+    }
+    
+    .section-icon {
+        height: 14px;
+        margin-right: 10px;
+    }
+    
+    .section-title {
+        font-size: 0.95rem;
+    }
+    
+    .empty-message {
+        padding: 15px;
+        font-size: 0.9rem;
     }
 }

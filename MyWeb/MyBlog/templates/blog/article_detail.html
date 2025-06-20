@@ -15,7 +15,7 @@
         <h2 class="title">{{ article.title }}</h2>
         <div class="meta">
             <span class="pub-date">发布日期：{{ article.pub_date|date:"Y-m-d" }}</span>
-            <span class="version">评论数：v{{ article.comments.count }}</span>
+            <span class="version">评论数：{{ article.comments.count }}</span>
         </div>
     </header>
     

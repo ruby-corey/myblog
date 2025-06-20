@@ -160,3 +160,95 @@ class About(models.Model):
     def __str__(self):
         return self.title
     
+class VisitRecord(models.Model):
+    " 访问记录 "
+    ip_address = models.GenericIPAddressField(verbose_name="IP地址")
+    user_agent = models.TextField(verbose_name="用户代理",max_length=500,blank=True,null=True)
+    visited_time = models.DateTimeField(verbose_name="访问时间",auto_now_add=True)
+    visited_path = models.CharField(verbose_name="访问路径",max_length=200)
+    session_id = models.CharField(verbose_name="会话ID",max_length=40,blank=True,null=True)
+    is_unique_today = models.BooleanField(verbose_name="今日唯一时间",default=False)
+
+    class Meta:
+        verbose_name = "访问记录"
+        verbose_name_plural = "访问记录"
+        indexes = [
+            models.Index(fields=['ip_address','visited_time']),
+            models.Index(fields=['session_id','visited_time']),
+            models.Index(fields=['visited_time']),
+        ]
+
+    @staticmethod
+    def get_client_ip(request):
+        x_forward_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forward_for:
+            ip = x_forward_for.split(',')[0].strip()
+        else:
+            ip = request.META.get('REMOTE_ADDR','0.0.0.0')
+        return ip
+    
+    @classmethod
+    def record_visit(cls,request,ip=None):
+        if ip is None:
+            ip = cls.get_client_ip(request)
+
+        user_agent = request.META.get('HTTP_USER_AGENT', '')[:500]
+        visited_path = request.path[:200]
+        session_id = request.session.session_key
+
+        if not session_id:
+            request.session.create()
+            session_id = request.session.session_key
+        
+        today = timezone.now().date()
+        existing_today = cls.objects.filter(
+            visited_time__date=today,
+            user_agent=user_agent,
+            ip_address=ip
+        ).exists()
+
+        record = cls.objects.create(
+            ip_address=ip,
+            user_agent=user_agent,
+            visited_time=timezone.now(),
+            visited_path=visited_path,
+            session_id=session_id,
+            is_unique_today=not existing_today
+        )
+
+        return record
+    
+class VisitSummary(models.Model):
+    " 访问统计 "
+    date = models.DateField(unique=True, verbose_name="日期")
+    total_visits = models.IntegerField(default=0, verbose_name="总访问量")
+    unique_visitors = models.IntegerField(default=0, verbose_name="唯一访客数")
+    unique_ips = models.IntegerField(default=0, verbose_name="唯一IP数")
+    # most_visited_path = models.CharField(max_length=200, blank=True, null=True, verbose_name="最热门路径")
+    # visits_by_hour = models.JSONField(default=dict, verbose_name="按小时访问分布")
+    
+    class Meta:
+        verbose_name = "访问统计摘要"
+        verbose_name_plural = "访问统计摘要"
+    
+    @classmethod
+    def update_summary(cls,date=None):
+        if date is None:
+            date = timezone.now().date()
+
+        records = VisitRecord.objects.filter(visited_time__date=date)
+        
+        total_visits = records.count()
+        unique_visitors = records.filter(is_unique_today=True).count()
+        unique_ips = records.values('ip_address').distinct().count()
+
+        summary, created = cls.objects.update_or_create(
+                date=date,
+                defaults={
+                    'total_visits': total_visits,
+                    'unique_visitors': unique_visitors,
+                    'unique_ips': unique_ips,
+                }
+            )
+            
+        return summary
