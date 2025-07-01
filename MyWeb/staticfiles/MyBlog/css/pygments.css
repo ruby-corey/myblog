@@ -1,0 +1,149 @@
+/* 代码块基础样式 */
+.codehilite {
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    line-height: 1.5;
+}
+
+/* 行号样式 */
+.linenos {
+    color: var(--code-comment);
+    padding-right: 0.5rem;
+    user-select: none;
+}
+
+/* 注释 */
+.c, .ch, .cm, .c1, .cs {
+    color: var(--code-comment);
+    font-style: italic;
+}
+
+/* 关键字 */
+.k,  .kd, .kn, .kp, .kr, .kt {
+    color: var(--code-keyword);
+    font-weight: bold;
+}
+
+.kc{
+    color: var(--code-bool);
+    font-weight: bold;
+}
+
+/* 字符串 */
+.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .s1, .ss {
+    color: var(--code-string);
+}
+
+/* 数字 */
+.m, .mb, .mf, .mh, .mi, .mo, .il {
+    color: var(--code-number);
+}
+
+/* 运算符 */
+.o, .ow {
+    color: var(--code-operator);
+}
+
+/* 删除和插入内容 */
+.gd {
+    color: var(--code-deleted);
+    background-color: #3D1E20;
+}
+.gi {
+    color: var(--code-inserted);
+    background-color: #19362C;
+}
+
+/* 行高亮 */
+.hll {
+    background-color: var(--code-line-highlight);
+}
+
+/* 其他样式 */
+.err {
+    border: 1px solid #f88f7f;
+}
+.esc {
+    color: var(--code-text);
+}
+.g {
+    color: var(--code-text);
+}
+.n {
+    color: var(--code-text);
+}
+.x {
+    color: var(--code-text);
+}
+.p {
+    color: var(--code-text);
+}
+.na {
+    color: #005cc5;
+}
+.nb {
+    color: var(--code-print);
+}
+.nc {
+    color: var(--code-text);
+    font-weight: bold;
+}
+.no {
+    color: #6f42c1;
+}
+.nd {
+    color: #d73a49;
+    font-weight: bold;
+}
+.ni {
+    color: #6f42c1;
+}
+.ne {
+    color: #d73a49;
+    font-weight: bold;
+}
+/* 函数 */
+.nf {
+    color: var(--code-function);
+}
+.nl {
+    color: #005cc5;
+}
+.nn {
+    color: var(--code-text);
+    font-weight: bold;
+}
+.nx {
+    color: #032f62;
+}
+.py {
+    color: #6a737d;
+}
+.nt {
+    color: #22863a;
+    font-weight: bold;
+}
+.nv {
+    color: #0357b6;
+}
+.pm {
+    color: var(--code-text);
+}
+.w {
+    color: var(--code-text);
+}
+.bp {
+    color: var(--code-print);
+}
+/* 类 */
+.fm {
+    color: var(--code-function);
+}
+.vc, .vg, .vi, .vm {
+    color: #6404be;
+}

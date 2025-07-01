@@ -1,0 +1,8 @@
+.markdownx .markdownx-editor {
+    width: 100%;
+    min-width: 500px !important;
+    max-width: 800px !important;  
+    height: 360px !important;     
+    resize: vertical !important;             
+    overflow: auto !important;    /* 超出内容显示滚动条 */
+}

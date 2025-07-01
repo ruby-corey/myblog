@@ -18,7 +18,11 @@
 
     {% for article in articles %}
     <article class="article-card">
-        
+        {% if article.cover_img %}
+        <div class="article-cover">
+            <img src="{{ article.cover_img.url }}" alt="{{ article.title }}封面" class="cover-image">
+        </div>
+        {% endif %}
         <div class="article-info">
             <div class="card-title">
                 <i class="card-icon"></i>
@@ -62,11 +66,7 @@
                 <span class="visitor_count">| 访问：{{ article.visited_num }}</span>
             </div>
         </div>
-        {% if article.cover_img %}
-        <div class="article-cover">
-            <img src="{{ article.cover_img.url }}" alt="{{ article.title }}封面" class="cover-image">
-        </div>
-        {% endif %}
+ 
     </article>
     {% empty %}
     <div class="empty-tip">

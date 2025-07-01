@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-"""------------------------------------------------------------
-一个让你用各种方式管理 Django 项目的命令行工具。
-你可以阅读 django-admin 和 manage.py 获取所有 manage.py 的细节。
---------------------------------------------------------------"""
-"""Django's command-line utility for administrative tasks."""
+
 import os
 import sys
 

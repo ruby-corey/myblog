@@ -100,7 +100,8 @@ class ArriveAtView(generic.ListView):
 def commentview(request,pk):
 
     article = get_object_or_404(Article,pk=pk)
-    article.increase_visited()
+    article.increase_visited(request)
+    
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
